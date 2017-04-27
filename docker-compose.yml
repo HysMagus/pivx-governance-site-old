@@ -1,0 +1,8 @@
+version: '3'
+services:
+  web:
+    image: nginx
+    volumes:
+      - /Users/Marthinus/Code/PIVX/governance-site/source:/usr/share/nginx/html:ro
+    ports:
+      - "7777:80"
