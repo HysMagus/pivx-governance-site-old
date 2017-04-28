@@ -24,6 +24,17 @@ gulp.task('server:stop', function (callback) {
 
 function dockerCompose(args, callback){
     const promise = spawn('docker-compose', args);
+    const childProcess = promise.childProcess;
+
+    console.log('[spawn] childProcess.pid: ', childProcess.pid);
+    
+    childProcess.stdout.on('data', function (data) {
+        console.log('[spawn] stdout: ', data.toString());
+    });
+    childProcess.stderr.on('data', function (data) {
+        console.log('[spawn] stderr: ', data.toString());
+    });
+
     promise
         .then(() => callback())
         .catch((error) => {
