@@ -1,5 +1,5 @@
 const browserstack = require('browserstack-local');
-const {config} = require('./webdriver.io.base.conf');
+const {config} = require('./base.conf.js');
 
 config.capabilities = [{
     maxInstances: 5,

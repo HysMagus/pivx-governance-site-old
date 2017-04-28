@@ -2,17 +2,20 @@ const gulp = require('gulp');
 const {spawn} = require('child-process-promise');
 const webdriver = require('gulp-webdriver');
 const runSequence = require('run-sequence');
+const util = require('gulp-util');
+
+const environment = util.env.environment || 'local';
 
 gulp.task('server:start', function (callback) {
     dockerCompose(['up', '-d'], callback);
 });
 
-gulp.task('pipeline:local', function(callback) {
-    runSequence('server:start', 'test:e2e:local', 'server:stop', callback)
+gulp.task('pipeline', function(callback) {
+    runSequence('server:start', 'test:e2e', 'server:stop', callback)
 });
 
-gulp.task('test:e2e:local', function () {
-    return gulp.src('webdriver.io.local.conf.js').pipe(webdriver());
+gulp.task('test:e2e', function () {
+    return gulp.src(`config/${environment}.conf.js`).pipe(webdriver());
 });
 
 gulp.task('server:stop', function (callback) {
