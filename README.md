@@ -11,3 +11,5 @@ The PIVX governance site codebase
 ### Run tests
 
 `gulp pipeline --environment local`
+
+<script src="https://gist.github.com/openbaringen/ddeffc0dc74b54f6227371e3eae27eea.js"></script>
